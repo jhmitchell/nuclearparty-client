@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import EnqueueButton from './EnqueueButton';
 
 function App() {
   const [lobbyId, setLobbyId] = useState('');
