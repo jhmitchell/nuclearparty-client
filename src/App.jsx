@@ -6,8 +6,10 @@ function App() {
   const handleEmojiClick = async (emoji) => {
     try {
       const clientName = 'Web Client';
-      const instruction = `emoji:${emoji}`;
-
+      const instruction = {
+        type: 'emoji',
+        data: emoji,
+      };
       const response = await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
         method: 'POST',
         headers: {
@@ -15,12 +17,6 @@ function App() {
         },
         body: JSON.stringify({ lobbyId, clientName, instruction }),
       });
-
-      if (response.ok) {
-        console.log('Emoji enqueued successfully!');
-      } else {
-        throw new Error('Failed to enqueue emoji');
-      }
     } catch (error) {
       console.error('Error enqueueing emoji:', error);
       alert('Failed to enqueue emoji. Please try again.');
