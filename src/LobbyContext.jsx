@@ -4,13 +4,13 @@ const LobbyContext = createContext();
 
 export const LobbyProvider = ({ children }) => {
   const [lobbyId, setLobbyId] = useState('');
+  const [clientName, setClientName] = useState('');
   const [joinedLobby, setJoinedLobby] = useState(false);
 
   useEffect(() => {
     const handleBeforeUnload = async () => {
       if (joinedLobby) {
         try {
-          const clientName = 'Web Client';
           const instruction = {
             type: 'user-leave',
             data: null,
@@ -33,10 +33,10 @@ export const LobbyProvider = ({ children }) => {
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [joinedLobby, lobbyId]);
+  }, [joinedLobby, lobbyId, clientName]);
 
   return (
-    <LobbyContext.Provider value={{ lobbyId, setLobbyId, joinedLobby, setJoinedLobby }}>
+    <LobbyContext.Provider value={{ lobbyId, setLobbyId, clientName, setClientName, joinedLobby, setJoinedLobby }}>
       {children}
     </LobbyContext.Provider>
   );

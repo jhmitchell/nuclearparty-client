@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import LobbyContext from './LobbyContext';
 
 function LobbyJoin() {
-  const { lobbyId, setLobbyId, joinedLobby, setJoinedLobby } = useContext(LobbyContext);
+  const { lobbyId, setLobbyId, clientName, setClientName, joinedLobby, setJoinedLobby } = useContext(LobbyContext);
 
   const handleJoinLobby = async () => {
     try {
-      const clientName = 'Web Client';
       const instruction = {
         type: 'user-join',
         data: lobbyId,
@@ -42,6 +41,13 @@ function LobbyJoin() {
         value={lobbyId}
         onChange={(e) => setLobbyId(e.target.value)}
         placeholder="Lobby ID"
+      />
+      <h2>Enter Your Name:</h2>
+      <input
+        type="text"
+        value={clientName}
+        onChange={(e) => setClientName(e.target.value)}
+        placeholder="Your Name"
       />
       <button onClick={handleJoinLobby}>Join Lobby</button>
     </div>
