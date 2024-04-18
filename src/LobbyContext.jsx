@@ -1,10 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const LobbyContext = createContext();
 
 export const LobbyProvider = ({ children }) => {
   const [lobbyId, setLobbyId] = useState('');
-  const [clientName, setClientName] = useState('');
+  const [clientId, setClientId] = useState(uuidv4());
+  const [screenName, setScreenName] = useState('');
   const [joinedLobby, setJoinedLobby] = useState(false);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ export const LobbyProvider = ({ children }) => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ lobbyId, clientName, instruction }),
+            body: JSON.stringify({ lobbyId, clientId, instruction }),
           });
         } catch (error) {
           console.error('Error sending user-leave instruction:', error);
@@ -33,10 +35,10 @@ export const LobbyProvider = ({ children }) => {
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [joinedLobby, lobbyId, clientName]);
+  }, [joinedLobby, lobbyId, clientId]);
 
   return (
-    <LobbyContext.Provider value={{ lobbyId, setLobbyId, clientName, setClientName, joinedLobby, setJoinedLobby }}>
+    <LobbyContext.Provider value={{ lobbyId, setLobbyId, clientId, screenName, setScreenName, joinedLobby, setJoinedLobby }}>
       {children}
     </LobbyContext.Provider>
   );
