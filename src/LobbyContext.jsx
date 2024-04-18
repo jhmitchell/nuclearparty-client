@@ -10,23 +10,18 @@ export const LobbyProvider = ({ children }) => {
   const [joinedLobby, setJoinedLobby] = useState(false);
 
   useEffect(() => {
-    const handleBeforeUnload = async () => {
+    const handleBeforeUnload = () => {
       if (joinedLobby) {
-        try {
-          const instruction = {
-            type: 'user-leave',
-            data: null,
-          };
-          await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ lobbyId, clientId, instruction }),
-          });
-        } catch (error) {
-          console.error('Error sending user-leave instruction:', error);
-        }
+        const instruction = {
+          type: 'user-leave',
+          data: null,
+        };
+        const requestData = {
+          lobbyId,
+          clientId,
+          instruction,
+        };
+        navigator.sendBeacon('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', JSON.stringify(requestData));
       }
     };
 
