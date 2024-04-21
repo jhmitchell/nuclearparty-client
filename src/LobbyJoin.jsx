@@ -11,7 +11,7 @@ function LobbyJoin() {
         data: lobbyId,
       };
       //const response = await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
-      const response = await fetch('http://172.22.55.140:5000/addInstruction', {
+      const response = await fetch('http://172.22.55.140:5000/instructions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

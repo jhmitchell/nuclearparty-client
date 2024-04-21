@@ -10,7 +10,8 @@ function LobbyWaiting() {
         type: 'change-name',
         data: screenName,
       };
-      await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
+      //await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
+      await fetch('http://172.22.55.140:5000/instructions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ function LobbyWaiting() {
         data: color,
       };
       //await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
-      await fetch('http://172.22.55.140:5000/addInstruction', {
+      await fetch('http://172.22.55.140:5000/instructions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
