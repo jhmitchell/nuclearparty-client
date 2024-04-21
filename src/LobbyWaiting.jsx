@@ -29,7 +29,8 @@ function LobbyWaiting() {
         type: 'change-color',
         data: color,
       };
-      await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
+      //await fetch('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', {
+      await fetch('http://172.22.55.140:5000/addInstruction', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

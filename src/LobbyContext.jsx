@@ -21,7 +21,8 @@ export const LobbyProvider = ({ children }) => {
           clientId,
           instruction,
         };
-        navigator.sendBeacon('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', JSON.stringify(requestData));
+        //navigator.sendBeacon('https://nuclear-party-lobby-func.azurewebsites.net/api/addInstruction', JSON.stringify(requestData));
+        navigator.sendBeacon('http://172.22.55.140:5000/addInstruction', JSON.stringify(requestData));
       }
     };
 
